@@ -27,7 +27,7 @@ jobs:
       run: cd GithubActionTest
     - name: List files in the dir
       run: |
-          ls ${{ github.workspace }}
+          ls
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
