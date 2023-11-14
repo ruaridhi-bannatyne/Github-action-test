@@ -25,6 +25,9 @@ jobs:
           ls ${{ github.workspace }}
     - name: move to right folder
       run: cd GithubActionTest
+    - name: List files in the dir
+      run: |
+          ls ${{ github.workspace }}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
