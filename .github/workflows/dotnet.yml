@@ -20,9 +20,10 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: move to right folder 1
-      run: cd Github-action-test
-    - name: move to right folder 2
+    - name: List files in the repository
+      run: |
+          ls ${{ github.workspace }}
+    - name: move to right folder
       run: cd GithubActionTest
     - name: Restore dependencies
       run: dotnet restore
