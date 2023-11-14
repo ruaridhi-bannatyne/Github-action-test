@@ -2,7 +2,8 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET
-
+permissions:
+  pull-requests: write
 on:
   push:
     branches: [ "main" ]
@@ -29,3 +30,16 @@ jobs:
     - name: Test
       working-directory: ./GithubActionTest
       run: dotnet test --no-build --verbosity normal
+    - name: Add comment notifying test failure
+      if: ${{ failure() }}
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        message: |
+           Unit testing failed, see actions
+    - name: Add comment notifying test success
+      if: ${{ success() }}
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        message: |
+           Unit testing succeeded!
+        
