@@ -20,18 +20,12 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: List files in the repository
-      run: |
-          ls ${{ github.workspace }}
-    - name: move to right folder
-      run: cd GithubActionTest
-    - name: List files in the dir
-      run: |
-          ls
     - name: Restore dependencies
       working-directory: ./GithubActionTest
       run: dotnet restore
     - name: Build
+      working-directory: ./GithubActionTest
       run: dotnet build --no-restore
     - name: Test
+      working-directory: ./GithubActionTest
       run: dotnet test --no-build --verbosity normal
